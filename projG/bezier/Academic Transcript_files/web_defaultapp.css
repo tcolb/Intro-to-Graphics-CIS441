@@ -1,0 +1,1782 @@
+/*
+  AUDIT TRAIL: 5.2
+  1. Initial release.                        JWF 1/9/2002
+  AUDIT TRAIL: 5.3
+  2. For September 2002 release.             GPV 6/27/2002
+  3. FOR UI phase II release		     RK  7/29/2002
+     Following new classes added
+
+     Tables
+           DATA With Border (Table class with borders)
+		Its related classes defined as db.
+ 	   Non Tabular Data
+		Related classes defined as (nt)
+
+     	   Header class (TD.plheadermenulinks) for plain table.
+	        This class defines attributes for header tables.
+
+     Anchors
+	   menulinktext2 (Menu classes)
+	   sitemaplevel1 (Site Map level 1)
+	   sitemaplevel2 (Site Map level 2)
+	   sitemaplevel3 (Site Map level 3)
+
+    	   whitespace link (This anchor gives more spacing at top and bottom)
+
+  4. Fix for defect #53-0017 and #53-0018    Rk 8/23/2002
+	  Added a campus pipeline class which will be used in body tag.
+          Changed Input bg color to white
+  5. Added a class fieldmediumtextbold for student 		Rk 9/3/2002
+
+  AUDIT TRAIL:7.0						Rk 6/22/04
+  1. Modify fonts to use Verdana
+  2. Added tab styles to self service
+
+  AUDIT TRAIL:7.4						Rk 6/22/04
+  1. Field fieldOrangetextbold modified to use hex value instead of orange color
+  2. HR style modified to remove height as an attributte
+
+  AUDIT TRAIL:8.1	         PNN 08/07/2008
+  1. Add style tabdisable to emulate a tab page been disabled.
+
+  AUDIT TRAIL: 8.4.2
+  1. Defect 1-EO84OX         LVH 04/21/2011
+     A duplicate set of achor rules were defined and have been deleted.
+       A.whitespacelink
+       A.largelinktext
+       A.sitemaplevel1
+       A.sitemaplevel1:visited
+       A.sitemaplevel1:hover
+       A.sitemaplevel2
+       A.sitemaplevel2:visited
+       A.sitemaplevel2:hover
+       A.sitemaplevel3
+       A.sitemaplevel3:visited
+       A.sitemaplevel3:hover
+
+  AUDIT TRAIL: 8.5.1
+  1. Defect  1-11T5Y3K       LVH 01/12/2012
+     In certain browsers (specifically FireFox), the alignment classes
+     (centeraligntext, rightaligntext, leftaligntext) were not being processed
+     correctly. A set of td.<type>default p.<right|left|center>aligntext
+     statements were added at the end with margin:0 and text-align parameters.
+     
+   AUDIT TRAIL: 8.5.2
+  1. Defect  1-15QUOTC      EM 05/24/2012   
+     Added default border style for dbdead class.
+     Added default border style for bordertable class.
+
+  AUDIT TRAIL END
+
+  Copyright 2002 - 2012 Datatel+SGHE.  All rights reserved.               
+  --------------------------------------------------------------------------------
+  AUDIT TRAIL: UO BEGIN  
+  
+  Look for the embedded UO MOD comments, there are a number of changes including:  
+  1.  Change font-family throughout to "Arial, Verdana, Helvetica, sans-serif"
+  2.  Modify A.submenulinktext2, A.submenulinktext2:visited so that they are
+      displayed in bold letters
+  3.  Modify ALL A.submenulinktext2 fields so that they are underlined (i.e.,
+      text-decoration: underline)
+                  following done by TKETCHUM    18-DEC-2002
+  4.  Changed background graphic (set in BODY Tag)
+  5.  Change page title (set in H1 tag)
+  6.  Changed color scheme:  Table Header tags (green): #669966 (SCT: E3E5EE)
+                             Table Title tags  (wheat): #EBEBDB (SCT: E3E5EE)
+                             Table Label tags  (wheat): #EBEBDB (SCT: E3E5EE)
+  7.  Changed Hover Color to hi-lite in green #009900
+  8.  Changed Link text to dark green #003300
+  9.  changed the tab background color to #006633  (a deep green)
+  10. Retained Arial - verdana as our primary fonts at base size = 100% (for most objects)
+  11. Changed the taboff background color from CCCCCC to EBEBDB  
+  12. Changed bg3 background color to 997733 (the HR at the top of the page)
+  13. Added a uo_pageheaderdiv1 to hold the UO title graphic.
+
+  AUDIT TRAIL: UO END
+  --------------------------------------------------------------------------------
+
+  Copyright 2002 - 2012 SunGard. All rights reserved.
+
+  SunGard or its subsidiaries in the U.S. and other countries is the owner
+  of numerous marks, including "SunGard", the SunGard logo, "Banner,"
+  "PowerCAMPUS", "Advance", "Luminis", "DegreeWorks", "fsaATLAS",
+  "Course Signals", and "Open Digital Campus." Other names and marks used
+  in this material are owned by third parties.
+  This [site/software] contains confidential and proprietary information of
+  SunGard and its subsidiaries. Use of this [site/software] is limited to
+  SunGard Higher Education licensees, and is subject to the terms and
+  conditions of one or more written license agreements between SunGard
+  Higher Education and the licensee in question.
+
+  FILE NAME..: web_defaultapp.css
+  RELEASE....: 8.5.2
+  PRODUCT....: WTLWEB
+  COPYRIGHT..: Copyright 2002 - 2012 Datatel+SGHE.  All rights reserved.
+*/
+
+
+/* BROWSER CONSIDERATIONS - Overall
+   ========================================================
+   Rule:   Set margin-left and margin-right only on BODY, not on DIVS.
+   Reason: Older browsers do not recognize margins on DIVs.
+
+   Rule:   No underscores.
+   Reason: Underscores are not valid in CSS syntax.
+
+   Rule:   Use percentages to define font sizes. Normal text should be 90%.
+   Reason: Presents text in the user's preferred font size. Facilitates page fluidity.
+
+   Rule:   Use precentages to define margins.
+   Reason: Facilitates page fluidity.
+
+   Rule:   Apply font rules to TD and TH elements. Do not rely on inheritance from the BODY.
+   Reason: Some browsers do not support inheritance well.
+*/
+
+/* TEXT CLASSES                                             */
+/* All text classes should have rules defined for at least  */
+/* the following properties (unless the class has a special */
+/* purpose):                                                */
+/* color, font-family, font-weight, font-size, font-style   */
+/* text-align                                               */
+/* ======================================================== */
+.centeraligntext {
+text-align: center;
+}
+
+.leftaligntext {
+text-align: left;
+}
+
+.rightaligntext {
+text-align: right;
+}
+
+.menulisttext {
+list-style: none;
+}
+
+.captiontext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: italic;
+text-align: left;
+margin-top: 1em;
+}
+
+.skiplinks {
+display: none;
+}
+
+.pageheaderlinks {
+color: #000000; /* UO Mod was #FFFFFF; */
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90% */
+font-style: normal;
+text-align: center;
+}
+
+.requirementnotmet {
+color: black;
+}
+
+/* Class for Sub-menu Items                                  */
+/* ========================================================  */
+.pageheaderlinks2 {
+color: #EBEBDB;  /* Uo Mod was #CED5EA; */
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-size: 100%;  /* UO Mod */
+text-align: justify;
+}
+
+.pagebodylinks {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: center;
+}
+
+.gotoanchorlinks {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: left;
+}
+
+.pagefooterlinks {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: center;
+/* BROWSER CONSIDERATION - To make Netscape and IE compatible for PageFooter Division. */
+/* Margin-left style specified for Netscape within parent SPAN tag,                    */
+/* while IE uses the padding-left style within parent DIV tag.                         */
+margin-left: 3px;
+}
+
+.backlinktext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: right;
+margin-bottom: 5px;
+}
+
+.menuheadertext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;
+font-style: normal;
+text-align: left;
+}
+
+.menulinktext {
+color: #003300;  /* UO Mod was #0F2167; */
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-style: normal;
+}
+
+.menulinkdesctext {
+color: #696969;  /* UO Mod was black; */
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: left;
+}
+
+.normaltext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.infotext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.errortext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.warningtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.multipagemsgtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: left;
+}
+
+.releasetext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 90%;  /* UO Mod kept at 90%  */
+font-style: normal;
+text-align: left;
+text-transform: uppercase;
+}
+
+.requiredmsgtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldlabeltext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldlabeltextinvisible {
+display: none;
+}
+
+.fieldrequiredtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldformattext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldformatboldtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fielderrortext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldsmallboldtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldsmalltext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldmediumtext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldlargetext {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 110%;
+font-style: normal;
+text-align: left;
+}
+
+.fieldmediumtextbold {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+.fieldOrangetextbold {
+color:#FFA500;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+
+
+/* ANCHORS (LINKS)                                          */
+/* ======================================================== */
+A:link{color:#003300;text-decoration:underline;}    /* UO Mod */
+
+A:visited{color:#003300;text-decoration:underline;} /* UO Mod */
+
+A:active{color:#009900;} /* UO Mod */
+
+A:hover{color:#009900;text-decoration:underline;}   /* UO Mod */
+
+
+/* ANCHOR Definitions for Home Page MenuItems class.        */
+/* ======================================================== */
+A.menulinktext {
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 90%;  /* UO Mod This one actually stays at 90%*/
+font-style: normal;
+color:#003300; /* UO Mod */
+text-decoration: none;
+}
+
+
+A.submenulinktext {
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-transform: none;
+color:#003300; /* UO Mod */
+text-decoration: none;
+}
+
+A.submenulinktext:hover {
+background-color: #006633; /* UO Mod */
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: justify;
+text-transform: none;
+color: #FFFFFF;
+text-decoration: none;
+}
+
+A.submenulinktext:visited {
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-transform: none;
+color:#003300;    /* UO Mod */
+text-decoration: none;
+}
+
+A.submenulinktext:visited:hover {
+background-color: #006633; /* UO Mod */
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: justify;
+text-transform: none;
+color: #FFFFFF;
+text-decoration: none;
+}
+
+A.submenulinktext2 {
+font-weight: bold; /* UO Mod */
+font-size: 100%;   /* UO Mod */
+color:#003300;     /* UO Mod */
+text-decoration:underline; /* UO Mod */
+}
+
+A.submenulinktext2:hover {
+font-weight: bold; /* UO Mod */
+font-size: 100%;   /* UO Mod */
+color:#009900;     /* UO Mod */
+text-decoration:underline;
+}
+
+A.submenulinktext2:visited {
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold; /* UO Mod */
+font-size: 100%;   /* UO Mod */
+font-style: normal;
+color: #003300;    /* UO Mod */
+text-decoration: underline; /* UO Mod */
+}
+
+A.submenulinktext2:visited:hover {
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold; /* UO Mod */
+font-size: 100%;   /* UO Mod */
+text-decoration:underline;
+color:#009900;     /* UO Mod */
+}
+
+
+
+A.whitespacelink
+{
+line-height: 200%;
+COLOR: #003300; /* UO Mod */
+text-decoration: underline;
+}
+
+
+A.largelinktext {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 110%;
+font-style: normal;
+text-align: left;
+text-decoration: underline;
+}
+
+
+A.sitemaplevel1 {
+font-family:  Arial, Verdana, Helvetica, sans-serif;  /* UO Mod l */
+font-weight: bold;
+font-size: 80%;
+font-style: normal;
+text-align: left;
+text-decoration: none;
+color:       #003300;  /* UO Mod */
+}
+
+A.sitemaplevel1:visited {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size  : 80%;
+font-style : normal;
+text-align : left;
+text-decoration: none;
+color:#660099;
+}
+
+A.sitemaplevel1:hover {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size  : 80%;
+font-style : normal;
+text-align : left;
+text-decoration:underline;
+color:#009900;  /* UO Mod */
+}
+
+
+A.sitemaplevel2 {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 70%;
+font-style: normal;
+text-align: left;
+text-decoration: none;
+color:#009900; /* UO Mod */
+}
+
+A.sitemaplevel2:visited {
+font-family:  Verdana, Arial,  helvetica, sans-serif;
+font-weight: normal;
+font-size  : 70%;
+font-style : normal;
+text-align : left;
+text-decoration: none;
+color:#009900; /* UO Mod */
+}
+
+A.sitemaplevel2:hover {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+/*font-weight: bold; /* UO Mod */
+font-size  : 70%;
+font-style : normal;
+text-align : left;
+text-decoration:underline;
+color:#009900; /* UO Mod */
+}
+
+A.sitemaplevel3 {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 60%;
+font-style: normal;
+text-align: left;
+text-decoration: none;
+color:#009900; /* UO Mod */
+}
+
+A.sitemaplevel3:visited {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size  : 60%;
+font-style : normal;
+text-align : left;
+text-decoration: none;
+color:#009900; /* UO Mod */
+}
+
+A.sitemaplevel3:hover {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size  : 70%;
+font-style : normal;
+text-align : left;
+color:#009900; /* UO Mod */
+text-decoration:underline;
+}
+
+.whitespace1{
+padding-top:0em;
+}
+
+.whitespace2{
+padding-top:1em;
+}
+.whitespace3{
+padding-top:2em;
+}
+.whitespace4{
+padding-top:3em;
+}
+
+/* BODY                                                     */
+/* ======================================================== */
+BODY {
+background-color: #FFFFFF;
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-style: normal;
+text-align: left;
+/* BROWSER CONSIDERATION - Override browser settings for BODY margin */
+margin-top: 0px;
+margin-left: 0%; 
+margin-right: 2%;
+margin-left: 2%;  /* UO Mod */ 
+/*background-image: url(/wtlgifs/web_bg_app.jpg); /* UO Mod */
+/*background-repeat: no-repeat; /* UO Mod */
+}
+BODY.campuspipeline {
+background-color: #FFFFFF;
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-style: normal;
+text-align: left;
+/* BROWSER CONSIDERATION - Override browser settings for BODY margin */
+margin-top: 6px;
+margin-left: 2%;
+background-image: none;
+background-repeat: no-repeat;
+}
+BODY.previewbody {
+background-color: #FFFFFF;
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+margin-left: 2%;
+margin-right: 2%;
+
+/* Override the background image in the main BODY */
+background-image: none;
+}
+
+BODY.validationbody {
+background-color: #FFFFFF;
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+margin-left: 2%;  /* UO Mod */
+margin-right: 2%;
+/* Override the background image in the main BODY */
+background-image: none;
+}
+
+/* DIVIDES                                                  */
+/* All divides should have rules defined for margin and     */
+/* text-align.                                              */
+/* ======================================================== */
+DIV.menulistdiv {
+text-align: left;
+}
+
+DIV.headerwrapperdiv {
+
+margin-left: 0px;
+margin-top: 0px;
+}
+
+
+/* UO Mod [UO.1] added a UO only DIV to hold the title graphic */
+DIV.uo_pageheaderdiv1 {
+text-align: left;
+margin-top: 0px; 
+margin-left: 0px;
+border-bottom: 0px solid;
+border-left: 0px solid;
+border-right: 0px solid;
+border-top: 0px solid;
+background-image:  url(/gifs/dis_head_2000.gif);
+background-repeat: no-repeat; 
+}
+
+DIV.pageheaderdiv1 {
+
+text-align: left;
+margin-top: 0%;  /* UO Mod */
+margin-left: 0px;
+border-bottom: 0px solid;
+border-left: 0px solid;
+border-right: 0px solid;
+border-top: 0px solid;
+
+}
+
+DIV.pageheaderdiv2 {
+text-align: right;
+margin-top: 10px;
+margin-right: 10px;
+position: absolute;
+top: 0px;
+right: 0px;
+float: right;
+display: none;
+
+}
+
+DIV.headerlinksdiv {
+text-align: left;
+margin-right: 0%;
+
+}
+
+/* Class for BANNER SEARCH Form text and button controls     */
+/* ========================================================  */
+DIV.headerlinksdiv2 {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+text-transform: none;
+}
+
+DIV.bodylinksdiv {
+text-align: center;
+margin-top: 1%;
+}
+
+DIV.footerlinksdiv {
+text-align: center;
+}
+
+DIV.backlinkdiv {
+text-align: right;
+margin-top: -40px;
+}
+
+DIV.pagetitlediv {
+text-align: left;
+}
+
+DIV.infotextdiv {
+text-align: left;
+}
+
+DIV.pagebodydiv {
+text-align: left;
+}
+
+DIV.pagefooterdiv {
+text-align: left;
+border: 0px;
+margin-top: 0px;
+float: left;
+}
+
+DIV.poweredbydiv {
+text-align: right;
+margin-right: -1px;
+margin-top: 0px;
+border-bottom: 0px solid;
+border-left: 0px solid;
+border-right: 0px solid;
+border-top: 0px solid;
+float: right;
+}
+
+DIV.previewdiv {
+text-align: center;
+}
+
+DIV.validationdiv {
+text-align: center;
+}
+
+DIV.staticheaders {
+text-align: right;
+font-size:  100%;  /* UO Mod */
+}
+/* HEADERS                                                  */
+/* Do not set font-size for headers - defer to browser.      */
+/* ======================================================== */
+/* H1 is reserved for Page Header */
+H1 {
+color: #F2E2AD;  /* UO Mod */
+font-family: Arial, verdana, helvetica, sans-serif; /* UO Mod */
+font-weight: normal;  /* UO Mod */
+font-style: normal;
+font-size:0%;
+margin-top: 0px;
+margin-left: 200px; /* UO Mod 5.3.a Note the margin */
+}
+
+
+/* H2 is reserved for Page Title */
+H2 {
+color	   : BLACK;
+font-family: Arial, verdana, helvetica, sans-serif; /* UO Mod */
+font-weight: bold; /* UO Mod */
+font-style : normal;
+}
+
+/* H3 is reserved for Sub Title */
+H3 {
+color	   : BLACK;
+font-family: Arial, verdana, helvetica, sans-serif; /* UO Mod */
+font-weight: bold; /* UO Mod */
+font-style : normal;
+}
+
+/* Horizontal Rule for Menu Section                         */
+/* ======================================================== */
+
+HR {
+color: #AAAAAA; /* UO Mod */
+text-align: left;
+vertical-align: top;
+margin-top: -10px;
+}
+
+HR.pageseprator {
+color: #003366;
+text-align: left;
+vertical-align: top;
+}
+
+
+/* FORM CONTROLS                                            */
+/* ======================================================== */
+INPUT {
+background-color: #FFFFFF; /* UO Mod want white buttons */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+}
+
+
+TEXTAREA {
+/*background-color: #FFFFFF;*/
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+
+}
+
+SELECT {
+/*background-color: #FFFFFF;*/
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+}
+
+
+/* TABLES                                                   */
+/* ======================================================== */
+TABLE.dataentrytable {
+border-bottom: 0px solid;
+border-left: 0px solid;
+border-right: 0px solid;
+border-top: 0px solid;
+}
+
+/* UO Mod 5.3.a added a 1px border */ 
+TABLE.datadisplaytable {
+border-color: black;
+border-bottom: 1px solid;
+border-left: 1px solid;
+border-right: 1px solid;
+border-top: 1px solid;
+}
+TABLE.plaintable {
+border-bottom: 0px solid;
+border-left: 0px solid;
+border-right: 0px solid;
+border-top: 0px solid;
+}
+
+TABLE.menuplaintable {
+/* Create a horizontal rule effect. */
+border-top: 1pt #707070 solid;
+}
+
+TABLE.pageheadertable {
+margin-top: 0px;
+}
+
+TABLE.colorsampletable {
+background-color: #FFFFFF;
+}
+
+TABLE.bordertable {
+border-collapse:collapse;
+border-bottom: 1px solid;
+border-left: 1px solid;
+border-right: 1px solid;
+border-top: 1px solid;
+/* Fix for Defect 1-15QUOTC */
+border: 1px solid black; 
+}
+
+/* TABLE HEADERS AND DATA CELLS                             */
+/* ======================================================== */
+TABLE TH {
+vertical-align: top;
+color: black;
+}
+
+TABLE TD {
+vertical-align: top;
+color: black;
+}
+
+.pageheadertablecell {
+text-align: left;
+}
+
+.pageheadernavlinkstablecell {
+text-align: right;
+}
+
+/* DATA ENTRY TABLE HEADERS AND DATA CELLS                  */
+/* Some font rules are redunant because they do not         */
+/* inherit well from the BODY on older browsers.            */
+/* ======================================================== */
+TABLE TD.deheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TH.deheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.detitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+}
+
+TABLE TH.detitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+}
+
+TABLE TD.delabel {
+background-color: #EBEBDB; /* UO Mod may have to uncomment this */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TH.delabel {
+background-color: #EBEBDB; /* UO Mod may have to uncomment this */
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.deseparator {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.dehighlight {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.dedead {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.dedefault {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.dewhite {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.deborder {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+border: 1px solid;
+
+}
+
+/* DATA DISPLAY TABLE HEADERS AND DATA CELLS                */
+/* Some font rules are redunant because they do not         */
+/* inherit well from the BODY on older browsers.            */
+/* ======================================================== */
+TABLE TD.ddheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid;   /* UO Mod 5.3.a */
+border-color: black; /* UO Mod 5.3.a */
+}
+
+TABLE TH.ddheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TD.ddtitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TH.ddtitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TD.ddlabel {
+background-color: #EBEBDB;  /* UO Mod May have to uncomment */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TH.ddlabel {
+background-color: #EBEBDB;  /* UO Mod May have to uncomment */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+
+TABLE TD.ddseparator {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TD.ddhighlight {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TD.dddead {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.dddefault {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/*border-bottom: 1pt #BFBFBF solid; */
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+TABLE TD.ddnontabular {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.ddwhite {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid; /* UO Mod 5.3.a */
+}
+
+/* PLAIN TABLE HEADERS AND DATA CELLS                       */
+/* These table data cell classes pertain to a table that is */
+/* used strictly for layout. They do not have the redundant */
+/* font rules because it is assumed that whatever is placed */
+/* in these TD/TH tags will have its own class.             */
+/* ======================================================== */
+TABLE TD.pltitle {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-weight: bold;
+}
+
+TABLE TD.plheader {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-size: 100%;  /* UO Mod */
+font-weight: bold;
+}
+
+TABLE TH.pllabel {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-size: 100%;  /* UO Mod */
+font-weight: bold;
+}
+
+TABLE TD.plseparator {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+}
+
+TABLE TD.plhighlight {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+}
+
+TABLE TD.pldead {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+}
+
+TABLE TD.pldefault {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+}
+
+TABLE TD.plwhite {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+
+}
+TABLE TD.plheaderlinks {
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+
+}
+
+
+/*========================================================*/
+/*=======  Class for header links=========================*/
+/*========================================================*/
+
+TABLE TD.plheadermenulinks {
+font-weight: normal;
+/*background-color:#EBEBDB;*/ /* UO Mod Possible will need to uncomment */
+}
+
+
+
+
+/* MENU PLAIN TABLE HEADERS AND DATA CELLS                  */
+/* ======================================================== */
+TABLE TD.mptitle {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.mpheader {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TH.mplabel {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.mpwhite {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.mpdefault {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.indefault {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+}
+
+/* Define tables with border				    */
+/* ======================================================== */
+TABLE TD.dbheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid;
+}
+
+TABLE TH.dbheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid;
+}
+
+TABLE TD.dbtitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+border: 1px solid;
+}
+
+TABLE TH.dbtitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+border: 1px solid;
+}
+
+TABLE TD.dblabel {
+background-color: #EBEBDB; /* UO Mod May need to uncomment */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid;
+}
+
+TABLE TH.dblabel {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid;
+}
+TABLE TD.dbdefault {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+border: 1px solid;
+}
+
+/* Fix for defect 1-15QUOTC - define default border style for dbdead class - start */
+TABLE TD.dbdead {
+	border: 1px solid black;
+}
+/* Fix for defect 1-15QUOTC - define default border style for dbdead class - End */
+
+
+/* NON TABULAR TABLE DATA DISPLAY  HEADERS AND DATA CELLS  */
+/* Some font rules are redunant because they do not         */
+/* inherit well from the BODY on older browsers.            */
+/* ======================================================== */
+TABLE TD.ntheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TH.ntheader {
+background-color: #669966; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.nttitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+}
+
+TABLE TH.nttitle {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+/* Make titles big and chunky. */
+padding-bottom: 1em;
+}
+
+TABLE TD.ntlabel {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TH.ntlabel {
+background-color: #EBEBDB; /* UO Mod */
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: bold;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.ntseparator {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.nthighlight {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.ntdead {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.ntdefault {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+
+TABLE TD.ntwhite {
+color: black;
+font-family: Arial, Verdana, Helvetica, sans-serif;  /* UO Mod changed Arial Narrow to Ariel */
+font-weight: normal;
+font-size: 100%;  /* UO Mod */
+font-style: normal;
+text-align: left;
+vertical-align: top;
+}
+/*
+
+New Tab styles for Self Service
+
+*/
+.bgtabon {
+	BACKGROUND-COLOR: #006633  /* UO Mod */
+}
+.bgtaboff {
+	BACKGROUND-COLOR: #ebebdb  /* UO Mod was cccccc*/
+}
+.texttabon {
+	COLOR: #ffffff
+}
+.texttaboff {
+	COLOR: #000000
+}
+.tabon {
+	PADDING-LEFT: 8px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(/wtlgifs/web_tab_corner.gif); COLOR: #ffffff; BACKGROUND-REPEAT: no-repeat; BACKGROUND-COLOR: #006633  /* UO Mod */
+}
+.tabon A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.tabon A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.tabon A:active {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.tabon A:hover {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+.taboff {
+	PADDING-LEFT: 8px;
+      FONT-WEIGHT: bold;
+      FONT-SIZE: 12px;
+      BACKGROUND-IMAGE: url(/wtlgifs/web_tab_corner.gif);
+      COLOR: #000000;
+      BACKGROUND-REPEAT: no-repeat;
+      BACKGROUND-COLOR: #ebebdb /* uo mod was cccccc */
+}
+.taboff A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.taboff A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.taboff A:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.taboff A:hover {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+
+/* 80100-1 */
+.tabdisable {
+	PADDING-LEFT: 8px;
+      FONT-WEIGHT: bold;
+      FONT-SIZE: 12px;
+      BACKGROUND-IMAGE: url(/wtlgifs/web_tab_corner.gif);
+      COLOR: #F2F2F2;
+      BACKGROUND-REPEAT: no-repeat;
+      BACKGROUND-COLOR: #ebebdb /* uo mod was cccccc */
+}
+.tabdisable A:link {
+	COLOR: #F2F2F2; TEXT-DECORATION: none
+}
+.tabdisable A:visited {
+	COLOR: #F2F2F2; TEXT-DECORATION: none
+}
+.tabdisable A:active {
+	COLOR: #F2F2F2; TEXT-DECORATION: none
+}
+.tabdisable A:hover {
+	COLOR: #F2F2F2; TEXT-DECORATION: none
+}
+
+.bg3 {
+	BACKGROUND-COLOR: #997733    /* UO Mod was cccc00 */
+}
+
+
+/*
+Enforce right alignment, specifically for Firefox, but works in all
+*/
+td.dbdefault p.rightaligntext {
+text-align: right;
+margin: 0;
+}
+td.dedefault p.rightaligntext {
+text-align: right;
+margin: 0;
+}
+td.dddefault p.rightaligntext {
+text-align: right;
+margin: 0;
+}
+td.mpdefault p.rightaligntext {
+text-align: right;
+margin: 0;
+}
+td.ntdefault p.rightaligntext {
+text-align: right;
+margin: 0;
+}
+td.pldefault p.rightaligntext {
+text-align: right;
+margin: 0;
+}
+/*
+Enforce left alignment, specifically for Firefox, but works in all
+*/
+td.dbdefault p.leftaligntext {
+text-align: left;
+margin: 0;
+}
+td.dedefault p.leftaligntext {
+text-align: left;
+margin: 0;
+}
+td.dddefault p.leftaligntext {
+text-align: left;
+margin: 0;
+}
+td.mpdefault p.leftaligntext {
+text-align: left;
+margin: 0;
+}
+td.ntdefault p.leftaligntext {
+text-align: left;
+margin: 0;
+}
+td.pldefault p.leftaligntext {
+text-align: left;
+margin: 0;
+}
+/*
+Enforce center alignment, specifically for Firefox, but works in all
+*/
+td.dbdefault p.centeraligntext {
+text-align: center;
+margin: 0;
+}
+td.dedefault p.centeraligntext {
+text-align: center;
+margin: 0;
+}
+td.dddefault p.centeraligntext {
+text-align: center;
+margin: 0;
+}
+td.mpdefault p.centeraligntext {
+text-align: center;
+margin: 0;
+}
+td.ntdefault p.centeraligntext {
+text-align: center;
+margin: 0;
+}
+td.pldefault p.centeraligntext {
+text-align: center;
+margin: 0;
+}
+
+

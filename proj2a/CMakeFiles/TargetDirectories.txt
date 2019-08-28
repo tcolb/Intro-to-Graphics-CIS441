@@ -1,0 +1,3 @@
+/Users/tcolby/Documents/CIS441/proj2a/CMakeFiles/rebuild_cache.dir
+/Users/tcolby/Documents/CIS441/proj2a/CMakeFiles/edit_cache.dir
+/Users/tcolby/Documents/CIS441/proj2a/CMakeFiles/project2A.dir

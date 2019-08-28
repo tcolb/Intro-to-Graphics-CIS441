@@ -1,0 +1,60 @@
+/*
+  AUDIT TRAIL: 5.3
+  1. Initial release.                        rk 6/14/2002
+
+	This style sheet will be used for print media. 
+	Use this style sheet to define print tags.
+        This style sheet can also be used to override styles from application pages.
+
+  AUDIT TRAIL END
+
+  FILE NAME..: web_defaultprint.css
+  RELEASE....: 5.3
+  PRODUCT....: WTLWEB
+  COPYRIGHT..: Copyright (C) SCT Corporation 2002. All rights reserved.
+*/
+
+
+@media print 
+{
+  /* style sheet for print goes here */
+
+BODY {
+font-family: Arial, verdana, helvetica, sans-serif;
+font-style: normal;
+text-align: left;
+/* BROWSER CONSIDERATION - Override browser settings for BODY margin */
+margin-top: 0%;
+margin-left: 0%;
+}
+
+H1 {
+/* color: #FFFFFF;  UO MOD 5.3.a */
+color: #000000; 
+font-family: Arial;
+font-weight: bold;
+font-style: normal;
+margin-top: 0px;
+margin-left: 80px; /* UO Mod 5.3.a Note the margin */
+}
+
+
+DIV.backlinkdiv {
+display:none
+}
+
+DIV.pageheaderdiv2 {
+display: none 
+}
+
+DIV.headerlinksdiv {
+display: none 
+}
+DIV.poweredbydiv {
+display: none 
+}
+
+DIV.footerlinksdiv{
+display: none 
+}
+}

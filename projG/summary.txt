@@ -1,0 +1,5 @@
+441 Project G - Pre-Defined
+
+I succesfully completed the bezier and convolutional neural net projects.
+
+I partially completed the CUDA project (correct greyscale output, but not outputting sobel), I did however put a lot of work into the sobel filter, and I believe successfully figured out its block / thread dimensions if that counts for any credit.
